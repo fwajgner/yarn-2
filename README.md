@@ -15,8 +15,9 @@ W przypadku wprowadzania zmian do repozytorium należy przedtem jednorazowo uruc
 # Uruchomienie
 
 `yarn install`
+
 `yarn start < --env PORT=3000 >`
 
 # Budowanie
 
-yarn build < --env BUILD_PATH=dist >
+`yarn build < --env BUILD_PATH=dist >`
