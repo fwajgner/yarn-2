@@ -6,9 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "build:development": "webpack --mode=development",
     "analyze": "webpack --mode=production --env analyze",
-    "analyze:development": "webpack --mode=development --env analyze",
     "lint": "eslint src --ext js,jsx,ts,tsx",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
