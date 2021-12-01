@@ -104,6 +104,7 @@ module.exports = (webpackConfigEnv, argv) => {
       host: '0.0.0.0',
       port: webpackConfigEnv.PORT ? webpackConfigEnv.PORT : 3000,
       hot: true,
+      historyApiFallback: true,
       // open: {
       //   app: {
       //     name: 'google-chrome',  // 'Chrome' is 'Google Chrome' - macOS, 'google-chrome' - Linux, 'chrome' - Windows
