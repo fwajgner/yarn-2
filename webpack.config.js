@@ -79,6 +79,7 @@ module.exports = (webpackConfigEnv, argv) => {
       ...config.output,
       filename: '[name].js',
       chunkFilename: '[name].chunk.js',
+      publicPath: '/'
     };
     config.module.rules.push({
       test: /\.css$/i,
@@ -105,6 +106,15 @@ module.exports = (webpackConfigEnv, argv) => {
       port: webpackConfigEnv.PORT ? webpackConfigEnv.PORT : 3000,
       hot: true,
       historyApiFallback: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      client: {
+        webSocketURL: {
+          hostname: 'localhost',
+        },
+      },
+      allowedHosts: 'all',
       // open: {
       //   app: {
       //     name: 'google-chrome',  // 'Chrome' is 'Google Chrome' - macOS, 'google-chrome' - Linux, 'chrome' - Windows
