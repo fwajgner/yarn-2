@@ -33,7 +33,6 @@ const config = {
       },
       {
         test: /\.(bmp|png|svg|jpg|jpeg|gif|webp)$/i,
-        include: resolveApp('./src'),
         type: 'asset',
         generator: {
           filename: 'static/media/[name].[contenthash:8].[ext]',
@@ -41,7 +40,6 @@ const config = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        include: resolveApp('./src'),
         type: 'asset/resource',
         generator: {
           filename: 'static/fonts/[name].[contenthash:8].[ext]',
@@ -79,7 +77,7 @@ module.exports = (webpackConfigEnv, argv) => {
       ...config.output,
       filename: '[name].js',
       chunkFilename: '[name].chunk.js',
-      publicPath: '/'
+      publicPath: '/',
     };
     config.module.rules.push({
       test: /\.css$/i,
