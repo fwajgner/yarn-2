@@ -8,5 +8,7 @@
   "eslint.nodePath": ".yarn/sdks",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "jest.jestCommandLine": "yarn test",
-  "jest.autoRun": { "watch": true }
+  "jest.autoRun": {
+    "watch": true
+  }
 }
