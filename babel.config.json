@@ -20,7 +20,7 @@
       "babel-plugin-styled-components",
       {
         "displayName": true,
-        "namespace": "admin"
+        "namespace": "package-name"
       }
     ]
   ],
