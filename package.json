@@ -1,6 +1,6 @@
 {
   "name": "@scope/package-name",
-  "packageManager": "yarn@3.1.0",
+  "packageManager": "yarn@3.1.1",
   "private": true,
   "version": "0.1.0",
   "scripts": {
