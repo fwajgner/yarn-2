@@ -139,7 +139,7 @@ module.exports = (webpackConfigEnv, argv) => {
       test: /\.css$/i,
       use: [MiniCssExtractPlugin.loader, 'css-loader'],
     });
-    // config.devtool = 'source-map';
+    config.devtool = webpackConfigEnv.SOURCE_MAP ? 'source-map' : false;
     config.optimization = {
       ...config.optimization,
       splitChunks: {

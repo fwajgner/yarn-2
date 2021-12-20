@@ -5,7 +5,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "webpack serve --mode=development",
-    "build": "webpack --mode=production",
+    "build-dev": "webpack --mode=production --env SOURCE_MAP",
+    "build-prod": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
     "lint": "eslint src --ext js,jsx,ts,tsx",
     "format": "prettier --write .",
