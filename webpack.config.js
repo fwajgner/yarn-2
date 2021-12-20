@@ -11,7 +11,6 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const developmentMode = 'development';
 const productionMode = 'production';
-const testMode = 'test';
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const buildPath = 'dist';
@@ -20,6 +19,7 @@ const config = {
   entry: resolveApp('src/index.tsx'),
   output: {
     chunkLoadingGlobal: 'webpackAdminPanel',
+    publicPath: '/',
   },
   resolve: { extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx'] },
   module: {
@@ -79,7 +79,6 @@ module.exports = (webpackConfigEnv, argv) => {
       ...config.output,
       filename: '[name].js',
       chunkFilename: '[name].chunk.js',
-      publicPath: '/'
     };
     config.module.rules.push({
       test: /\.css$/i,
