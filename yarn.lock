@@ -1658,73 +1658,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cwm/admin-panel@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@cwm/admin-panel@workspace:."
-  dependencies:
-    "@babel/cli": ^7.16.0
-    "@babel/core": ^7.16.0
-    "@babel/eslint-parser": ^7.16.3
-    "@babel/plugin-transform-runtime": ^7.16.4
-    "@babel/preset-env": ^7.16.4
-    "@babel/preset-react": ^7.16.0
-    "@babel/preset-typescript": ^7.16.0
-    "@babel/runtime": ^7.16.3
-    "@testing-library/jest-dom": ^5.15.1
-    "@testing-library/react": ^12.1.2
-    "@types/babel__plugin-transform-runtime": ^7.9.2
-    "@types/concurrently": ^6.4.0
-    "@types/dotenv-webpack": ^7.0.3
-    "@types/eslint": ^7.29.0
-    "@types/jest": ^27.0.3
-    "@types/mini-css-extract-plugin": ^2.4.0
-    "@types/node": ^16.11.11
-    "@types/react": ^17.0.37
-    "@types/react-dom": ^17.0.11
-    "@types/react-is": ^17.0.3
-    "@types/styled-components": ^5.1.15
-    "@types/testing-library__jest-dom": ^5.14.1
-    "@types/webpack-bundle-analyzer": ^4.4.1
-    "@yarnpkg/sdks": ^2.5.1-rc.4
-    babel-loader: ^8.2.3
-    babel-plugin-styled-components: ^2.0.2
-    concurrently: ^6.4.0
-    cross-env: ^7.0.3
-    cross-fetch: ^3.1.4
-    css-loader: ^6.5.1
-    css-minimizer-webpack-plugin: ^3.2.0
-    dotenv-webpack: ^7.0.3
-    eslint: ^7.32.0
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-jest: ^25.3.0
-    eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-react: ^7.27.1
-    eslint-plugin-react-hooks: ^4.3.0
-    eslint-plugin-testing-library: ^5.0.0
-    html-webpack-plugin: ^5.5.0
-    husky: ^7.0.4
-    identity-obj-proxy: ^3.0.0
-    jest: ^27.4.2
-    jest-cli: ^27.4.2
-    jest-styled-components: ^7.0.8
-    mini-css-extract-plugin: ^2.4.5
-    msw: ^0.35.0
-    prettier: ^2.5.0
-    pretty-quick: ^3.1.2
-    process: ^0.11.10
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-is: ^17.0.2
-    style-loader: ^3.3.1
-    styled-components: ^5.3.3
-    typescript: ^4.4.4
-    webpack: ^5.64.4
-    webpack-bundle-analyzer: ^4.5.0
-    webpack-cli: ^4.9.1
-    webpack-dev-server: ^4.6.0
-  languageName: unknown
-  linkType: soft
-
 "@discoveryjs/json-ext@npm:^0.5.0":
   version: 0.5.5
   resolution: "@discoveryjs/json-ext@npm:0.5.5"
@@ -2116,6 +2049,73 @@ __metadata:
   checksum: c7654046d38984257dd639eab3dc770d1b0340916097b2fac03ce5d23506ada684e05574a69b255c32ea6a144a957c8cd84264159b545fca031c772289d88788
   languageName: node
   linkType: hard
+
+"@scope/package-name@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@scope/package-name@workspace:."
+  dependencies:
+    "@babel/cli": ^7.16.0
+    "@babel/core": ^7.16.0
+    "@babel/eslint-parser": ^7.16.3
+    "@babel/plugin-transform-runtime": ^7.16.4
+    "@babel/preset-env": ^7.16.4
+    "@babel/preset-react": ^7.16.0
+    "@babel/preset-typescript": ^7.16.0
+    "@babel/runtime": ^7.16.3
+    "@testing-library/jest-dom": ^5.15.1
+    "@testing-library/react": ^12.1.2
+    "@types/babel__plugin-transform-runtime": ^7.9.2
+    "@types/concurrently": ^6.4.0
+    "@types/dotenv-webpack": ^7.0.3
+    "@types/eslint": ^7.29.0
+    "@types/jest": ^27.0.3
+    "@types/mini-css-extract-plugin": ^2.4.0
+    "@types/node": ^16.11.11
+    "@types/react": ^17.0.37
+    "@types/react-dom": ^17.0.11
+    "@types/react-is": ^17.0.3
+    "@types/styled-components": ^5.1.15
+    "@types/testing-library__jest-dom": ^5.14.1
+    "@types/webpack-bundle-analyzer": ^4.4.1
+    "@yarnpkg/sdks": ^2.5.1-rc.4
+    babel-loader: ^8.2.3
+    babel-plugin-styled-components: ^2.0.2
+    concurrently: ^6.4.0
+    cross-env: ^7.0.3
+    cross-fetch: ^3.1.4
+    css-loader: ^6.5.1
+    css-minimizer-webpack-plugin: ^3.2.0
+    dotenv-webpack: ^7.0.3
+    eslint: ^7.32.0
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-jest: ^25.3.0
+    eslint-plugin-jsx-a11y: ^6.5.1
+    eslint-plugin-react: ^7.27.1
+    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-testing-library: ^5.0.0
+    html-webpack-plugin: ^5.5.0
+    husky: ^7.0.4
+    identity-obj-proxy: ^3.0.0
+    jest: ^27.4.2
+    jest-cli: ^27.4.2
+    jest-styled-components: ^7.0.8
+    mini-css-extract-plugin: ^2.4.5
+    msw: ^0.35.0
+    prettier: ^2.5.0
+    pretty-quick: ^3.1.2
+    process: ^0.11.10
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-is: ^17.0.2
+    style-loader: ^3.3.1
+    styled-components: ^5.3.3
+    typescript: ^4.4.4
+    webpack: ^5.64.4
+    webpack-bundle-analyzer: ^4.5.0
+    webpack-cli: ^4.9.1
+    webpack-dev-server: ^4.6.0
+  languageName: unknown
+  linkType: soft
 
 "@sindresorhus/is@npm:^4.0.0":
   version: 4.2.0

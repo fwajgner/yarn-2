@@ -18,7 +18,7 @@ const buildPath = 'dist';
 const config = {
   entry: resolveApp('src/index.tsx'),
   output: {
-    chunkLoadingGlobal: 'webpackAdminPanel',
+    chunkLoadingGlobal: 'webpackPackageName',
     publicPath: '/',
   },
   resolve: { extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx'] },
