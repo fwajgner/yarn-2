@@ -19,3 +19,7 @@ package-lock.json
 pnpm-lock.yaml
 node_modules/
 jspm_packages/
+
+.dockerignore
+.drone.yml
+Dockerfile

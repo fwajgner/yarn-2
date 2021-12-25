@@ -39,6 +39,9 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
+# Typescript increment build files
+*.tsbuildinfo
+
 # Optional npm cache directory
 .npm
 
