@@ -11,9 +11,10 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const developmentMode = 'development';
 const productionMode = 'production';
+const buildPath = 'dist'; // only for prod
+
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-const buildPath = 'dist';
 
 const config = {
   entry: resolveApp('src/index.tsx'),
@@ -28,7 +29,7 @@ const config = {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: resolveApp('./src'),
         use: {
-          loader: 'babel-loader',
+          loader: 'ts-loader',
         },
       },
       {
@@ -54,9 +55,6 @@ const config = {
     runtimeChunk: { name: (entrypoint) => `runtime-${entrypoint.name}` },
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
     new Dotenv(),
     new HtmlWebPackPlugin({
       template: resolveApp('./public/index.html'),

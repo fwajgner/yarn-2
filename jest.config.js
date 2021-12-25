@@ -7,10 +7,8 @@ const config = {
   // The root directory that Jest should scan for tests and modules within
   rootDir: 'src',
 
-  // Indicates whether the coverage information should be collected while executing the test
-  // collectCoverage: true,
+  preset: 'ts-jest/presets/js-with-ts',
 
-  // The directory where Jest should output its coverage files
   coverageDirectory: '../coverage',
 
   collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts'],
@@ -23,7 +21,7 @@ const config = {
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',

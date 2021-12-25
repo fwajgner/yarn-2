@@ -18,6 +18,6 @@ export const handlers = [
   rest.get(`${base}/testBlob`, (req, res, ctx) => {
     const buffer = Buffer.from('binary string', 'ascii');
     const accept = req.headers.get('Accept');
-    return res(ctx.set({ 'Content-Length': buffer.byteLength.toString(), 'Content-Type': accept }), ctx.body(buffer));
+    return res(ctx.set({ 'Content-Length': buffer.byteLength.toString(), 'Content-Type': accept ?? '*/*' }), ctx.body(buffer));
   }),
 ];
