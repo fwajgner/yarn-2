@@ -24,11 +24,11 @@ const config = {
     chunkLoadingGlobal: 'webpackPackageName',
     publicPath: '/',
   },
-  resolve: { extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx'] },
+  resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'] },
   module: {
     rules: [
       {
-        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        test: /\.(ts|tsx|json)$/,
         include: resolveApp('./src'),
         loader: 'ts-loader',
         options: {
@@ -62,14 +62,6 @@ const config = {
     new Dotenv(),
     new HtmlWebPackPlugin({
       template: resolveApp('./public/index.html'),
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        mode: 'write-dts',
-      },
-      // eslint: {
-      //   files: './src/**/*.{ts,tsx,js,jsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
-      // },
     }),
   ],
   stats: {
@@ -108,6 +100,17 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       },
     };
+    config.plugins.push(
+      new ForkTsCheckerWebpackPlugin({
+        async: true,
+        typescript: {
+          mode: 'write-dts',
+        },
+        // eslint: {
+        //   files: './src/**/*.{ts,tsx,js,jsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+        // },
+      })
+    );
     config.devServer = {
       host: '0.0.0.0',
       port: webpackConfigEnv.PORT ? webpackConfigEnv.PORT : 3000,
@@ -158,6 +161,12 @@ module.exports = (webpackConfigEnv, argv) => {
       minimizer: [`...`, new CssMinimizerPlugin()],
     };
     config.plugins.push(
+      new ForkTsCheckerWebpackPlugin({
+        async: false,
+        typescript: {
+          mode: 'write-dts',
+        },
+      }),
       new MiniCssExtractPlugin({
         filename: 'static/styles/[name].[contenthash:8].css',
         chunkFilename: 'static/styles/[id].[contenthash:8].css',
