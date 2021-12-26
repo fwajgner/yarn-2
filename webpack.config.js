@@ -101,6 +101,9 @@ module.exports = (webpackConfigEnv, argv) => {
       },
     };
     config.plugins.push(
+      new webpack.WatchIgnorePlugin({
+        paths: [/\.js$/, /\.d\.ts$/],
+      }),
       new ForkTsCheckerWebpackPlugin({
         async: true,
         typescript: {
