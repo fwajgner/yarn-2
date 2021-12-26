@@ -12,7 +12,7 @@ export const handlers = [
   rest.get(`${base}/test500`, (req, res, ctx) => {
     return res(ctx.status(500), ctx.json('error'));
   }),
-  rest.get(`${base}/testNetworkError`, (req, res, ctx) => {
+  rest.get(`${base}/testNetworkError`, (req, res) => {
     return res.networkError('network error');
   }),
   rest.get(`${base}/testBlob`, (req, res, ctx) => {

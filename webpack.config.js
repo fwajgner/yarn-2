@@ -8,6 +8,7 @@ const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const developmentMode = 'development';
 const productionMode = 'production';
@@ -17,6 +18,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const config = {
+  context: appDirectory,
   entry: resolveApp('src/index.tsx'),
   output: {
     chunkLoadingGlobal: 'webpackPackageName',
@@ -28,8 +30,10 @@ const config = {
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: resolveApp('./src'),
-        use: {
-          loader: 'ts-loader',
+        loader: 'ts-loader',
+        options: {
+          // disable type checker - we will use it in fork plugin
+          transpileOnly: true,
         },
       },
       {
@@ -58,6 +62,14 @@ const config = {
     new Dotenv(),
     new HtmlWebPackPlugin({
       template: resolveApp('./public/index.html'),
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        mode: 'write-dts',
+      },
+      // eslint: {
+      //   files: './src/**/*.{ts,tsx,js,jsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+      // },
     }),
   ],
   stats: {

@@ -1,7 +1,7 @@
 import './App.css';
 
 interface Props {
-  optional?: string;
+  test?: string;
 }
 
 const App = (props: Props) => {
