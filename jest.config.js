@@ -9,6 +9,12 @@ const config = {
 
   preset: 'ts-jest/presets/js-with-ts',
 
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.test.json',
+    },
+  },
+
   coverageDirectory: '../coverage',
 
   collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts'],
