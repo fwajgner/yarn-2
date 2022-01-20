@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -24,7 +25,7 @@ const config = {
     chunkLoadingGlobal: 'webpackPackageName',
     publicPath: '/',
   },
-  resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'] },
+  resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'] },
   module: {
     rules: [
       {
@@ -112,7 +113,27 @@ module.exports = (webpackConfigEnv, argv) => {
         // eslint: {
         //   files: './src/**/*.{ts,tsx,js,jsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
         // },
-      })
+      }),
+      new CspHtmlWebpackPlugin(
+        {
+          'base-uri': `'none'`,
+          'object-src': `'none'`,
+          'connect-src': [`'self'`, `ws://*:*`],
+          'script-src': [`'self'`, `'unsafe-eval'`, `'unsafe-inline'`],
+          'style-src': [`'self'`, `'unsafe-inline'`],
+          'img-src': [`'self'`],
+        },
+        {
+          nonceEnabled: {
+            'script-src': false,
+            'style-src': false,
+          },
+          hashEnabled: {
+            'script-src': false,
+            'style-src': false,
+          },
+        }
+      )
     );
     config.devServer = {
       host: '0.0.0.0',
@@ -147,7 +168,7 @@ module.exports = (webpackConfigEnv, argv) => {
       clean: true,
       path: webpackConfigEnv.BUILD_PATH ? resolveApp(webpackConfigEnv.BUILD_PATH) : resolveApp(buildPath),
       filename: 'static/js/[name].[contenthash:8].js',
-      chunkFilename: 'static/js/[name].[contenthash:8].js',
+      chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
     };
     config.module.rules.push({
       test: /\.css$/i,
@@ -159,6 +180,13 @@ module.exports = (webpackConfigEnv, argv) => {
       splitChunks: {
         ...config.optimization.splitChunks,
         name: false,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: false,
+            chunks: 'all',
+          },
+        },
       },
       minimize: true,
       minimizer: [`...`, new CssMinimizerPlugin()],
@@ -172,7 +200,15 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
       new MiniCssExtractPlugin({
         filename: 'static/styles/[name].[contenthash:8].css',
-        chunkFilename: 'static/styles/[id].[contenthash:8].css',
+        chunkFilename: 'static/styles/[name].[contenthash:8].chunk.css',
+      }),
+      new CspHtmlWebpackPlugin({
+        'base-uri': `'none'`,
+        'object-src': `'none'`,
+        'connect-src': [`'self'`],
+        'script-src': [`'strict-dynamic'`, `https: 'self'`],
+        'style-src': [`'strict-dynamic'`, `https: 'self'`],
+        'img-src': [`'self'`],
       })
     );
   }
