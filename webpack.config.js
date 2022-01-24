@@ -10,6 +10,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshTypeScript = require('react-refresh-typescript');
 
 const developmentMode = 'development';
 const productionMode = 'production';
@@ -28,15 +30,6 @@ const config = {
   resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'] },
   module: {
     rules: [
-      {
-        test: /\.(ts|tsx|json)$/,
-        include: resolveApp('./src'),
-        loader: 'ts-loader',
-        options: {
-          // disable type checker - we will use it in fork plugin
-          transpileOnly: true,
-        },
-      },
       {
         test: /\.(bmp|png|svg|jpg|jpeg|gif|webp)$/i,
         type: 'asset',
@@ -76,6 +69,19 @@ module.exports = (webpackConfigEnv, argv) => {
     process.env.NODE_ENV = developmentMode;
     process.env.BABEL_ENV = developmentMode;
 
+    config.module.rules.push({
+      test: /\.(ts|tsx|json)$/,
+      include: resolveApp('./src'),
+      loader: 'ts-loader',
+      options: {
+        getCustomTransformers: () => ({
+          before: [ReactRefreshTypeScript()],
+        }),
+        // disable type checker - we will use it in fork plugin, react-refresh need this
+        transpileOnly: true,
+      },
+    });
+
     config.output = {
       ...config.output,
       filename: '[name].js',
@@ -114,6 +120,7 @@ module.exports = (webpackConfigEnv, argv) => {
         //   files: './src/**/*.{ts,tsx,js,jsx}', // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
         // },
       }),
+      new ReactRefreshWebpackPlugin(),
       new CspHtmlWebpackPlugin(
         {
           'base-uri': `'none'`,
@@ -161,6 +168,16 @@ module.exports = (webpackConfigEnv, argv) => {
   if (argv.mode === productionMode) {
     process.env.NODE_ENV = productionMode;
     process.env.BABEL_ENV = productionMode;
+
+    config.module.rules.push({
+      test: /\.(ts|tsx|json)$/,
+      include: resolveApp('./src'),
+      loader: 'ts-loader',
+      options: {
+        // disable type checker - we will use it in fork plugin
+        transpileOnly: true,
+      },
+    });
 
     config.bail = true;
     config.output = {
