@@ -15,7 +15,7 @@ Na dystrybucjach Linuxa trzeba uruchomić dodatkowo `chmod +x .husky/pre-commit`
 
 # Uruchomienie
 
-`yarn install`
+`yarn install --immutable` (immutable nie modyfikuje yarn.lock)
 
 `yarn start < --env PORT=3000 >`
 
