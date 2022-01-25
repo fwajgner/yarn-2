@@ -156,11 +156,11 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       },
       allowedHosts: 'all',
-      // open: {
-      //   app: {
-      //     name: 'google-chrome',  // 'Chrome' is 'Google Chrome' - macOS, 'google-chrome' - Linux, 'chrome' - Windows
-      //   },
-      // },
+      open: {
+        app: {
+          name: process.platform === 'linux' ? 'google-chrome' : 'chrome', // 'Chrome' is 'Google Chrome' - macOS, 'google-chrome' - Linux, 'chrome' - Windows
+        },
+      },
     };
   }
 
