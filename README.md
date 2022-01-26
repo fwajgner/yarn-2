@@ -15,10 +15,17 @@ Na dystrybucjach Linuxa trzeba uruchomić dodatkowo `chmod +x .husky/pre-commit`
 
 # Uruchomienie
 
-`yarn install`
+`yarn install --immutable` (immutable nie modyfikuje yarn.lock)
 
 `yarn start < --env PORT=3000 >`
 
 # Budowanie
 
 `yarn build < --env BUILD_PATH=dist >`
+
+# CI/CD
+
+1.  `yarn install --immutable`
+2.  `yarn build-dev` lub `yarn build-prod`
+
+Domyślnie projekt zbuduje się do folderu dist w głównym katalogu projektu, można wpłynąć na tę ścieżkę dodając do polecenia w kroku 2. `--env BUILD_PATH=scieżka`.
