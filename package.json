@@ -89,5 +89,15 @@
       "built": true,
       "unplugged": true
     }
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "Android >= 97",
+    "Samsung >= 15",
+    "and_ff >= 95",
+    "not dead",
+    "not op_mini all",
+    "not ie 11",
+    "not and_uc >= 0"
+  ]
 }
