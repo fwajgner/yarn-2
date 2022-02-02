@@ -3,13 +3,18 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
+
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ReactRefreshTypeScript = require('react-refresh-typescript');
 
@@ -19,6 +24,8 @@ const buildPath = 'dist'; // only for prod
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+
+const styledComponentsTransformer = createStyledComponentsTransformer({ minify: true });
 
 const config = {
   context: appDirectory,
@@ -75,7 +82,7 @@ module.exports = (webpackConfigEnv, argv) => {
       loader: 'ts-loader',
       options: {
         getCustomTransformers: () => ({
-          before: [ReactRefreshTypeScript()],
+          before: [styledComponentsTransformer, ReactRefreshTypeScript()],
         }),
         // disable type checker - we will use it in fork plugin, react-refresh need this
         transpileOnly: true,
@@ -176,6 +183,7 @@ module.exports = (webpackConfigEnv, argv) => {
       options: {
         // disable type checker - we will use it in fork plugin
         transpileOnly: true,
+        getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
       },
     });
 
